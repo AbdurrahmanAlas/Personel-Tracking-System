@@ -16,7 +16,7 @@ namespace PersonelTakıp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "DaıreBas", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,0 +1,37 @@
+﻿@model PersonelTakıp.Models.Entity.DaıreBas
+@{
+    ViewBag.Title = "SilBilgiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Sil", "DaıreBas"))
+    {
+        <h1></h1>
+        <h4>Kayıt Silinsin mi?</h4>
+
+        <div class="form--group">
+            @Html.HiddenFor(x=>x.ID)
+            @Html.LabelFor(x => x.DaıreBas1)
+        @Html.TextBoxFor(x => x.DaıreBas1, new { @class = "form-control" })
+    </div>
+        <div>
+            @Html.LabelFor(x => x.Acıklama)
+            @Html.TextBoxFor(x => x.Acıklama, new { @class = "form-control" })
+        </div>
+    <div>
+        <br />
+        <button class="btn btn-danger">Daire Baskanlık Sil</button>
+        <br />
+
+        <a href="/DaıreBas/Index">Ana Sayfaya Dön</a>
+    </div>
+    <div></div>
+
+
+}
+
+
+
+
+</div>

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "DepartmanPersonelIzın";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<PersonelTakıp.Models.Entity.Personelızınlerı>
+
+
+<h3 style="margin-left:350px;color:black ">
+    ≡  Personel İzinleri
+</h3>
+<ol class="breadcrumb mb-4">
+
+
+    <li class="breadcrumb-item active btn btn-primary" >Personel Adı: @ViewBag.dpers</li>
+
+</ol>
+<table class="table table-bordered">
+
+    <tr>
+        <th><b>ID</b></th>
+        <th>İzin Türü</th>
+        <th>Alınan İzin Sayısı</th>
+        <th>Kalan İzin Sayısı</th>
+        <th>Gidiş Tarihi</th>
+        <th>Dönüş Tarihi</th>
+
+        <th>YAZDIR</th>
+
+
+
+
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+
+            <td><b>@x.ID</b></td>
+            <td>@x.IzınTuru</td>
+
+            <td>@x.AlınanIzınSayısı</td>
+            <td>@x.KalanIzınSayısı</td>
+            <td>@x.GıdısTarih</td>
+            <td>@x.DonusTarih</td>
+
+            <td><a href="#" class="btn btn-default" style="background-color:dodgerblue">YAZDIR</a></td>
+
+
+
+        </tr>
+
+
+
+    }
+
+</table>
+
+

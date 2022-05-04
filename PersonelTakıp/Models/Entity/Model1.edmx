@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PersonelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Birimler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Birim" Type="varchar" MaxLength="50" />
+          <Property Name="Aciklama" Type="text" />
+          <Property Name="DaıreID" Type="int" />
+        </EntityType>
+        <EntityType Name="DaıreBas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DaıreBas" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Acıklama" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslik" Type="varchar" MaxLength="50" />
+          <Property Name="Duyuru" Type="text" />
+          <Property Name="Aciklama" Type="text" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Saat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Iletisim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdiSoyadi" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Baslik" Type="varchar" MaxLength="150" />
+          <Property Name="Mesaj" Type="text" />
+          <Property Name="Tarih" Type="date" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YetkıID" Type="int" />
+          <Property Name="KullaniciAdi" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="10" />
+          <Property Name="Adi" Type="varchar" MaxLength="50" />
+          <Property Name="Soyadi" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="IsActıve" Type="bit" />
+          <Property Name="GirisTarih" Type="date" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kurum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KurumAdi" Type="varchar" MaxLength="50" />
+          <Property Name="Tel_1" Type="varchar" MaxLength="20" />
+          <Property Name="Tel_2" Type="varchar" MaxLength="20" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Adres" Type="text" />
+        </EntityType>
+        <EntityType Name="Personelızınlerı">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonelID" Type="int" />
+          <Property Name="IzınTuru" Type="text" />
+          <Property Name="GıdısTarih" Type="date" />
+          <Property Name="DonusTarih" Type="date" />
+          <Property Name="AlınanIzınSayısı" Type="int" />
+          <Property Name="KalanIzınSayısı" Type="int" />
+          <Property Name="Adi" Type="varchar" MaxLength="50" />
+          <Property Name="Soyadi" Type="varchar" MaxLength="50" />
+          <Property Name="Sicil" Type="int" />
+        </EntityType>
+        <EntityType Name="Personeller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DaıreID" Type="int" />
+          <Property Name="BırımID" Type="int" />
+          <Property Name="Adi" Type="varchar" MaxLength="30" />
+          <Property Name="Soyadi" Type="varchar" MaxLength="50" />
+          <Property Name="Sicil" Type="varchar" MaxLength="10" />
+          <Property Name="Tel_1" Type="varchar" MaxLength="20" />
+          <Property Name="Tc" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Adres" Type="text" />
+          <Property Name="Aciklama" Type="text" />
+          <Property Name="IsActıve" Type="bit" />
+          <Property Name="ızın" Type="int" />
+          <Property Name="GirisTarih" Type="date" />
+          <Property Name="DonusTarih" Type="date" />
+        </EntityType>
+        <EntityType Name="Yetkilendirme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yetki" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Birimler_DaıreBas">
+          <End Role="DaıreBas" Type="Self.DaıreBas" Multiplicity="0..1" />
+          <End Role="Birimler" Type="Self.Birimler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaıreBas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Birimler">
+              <PropertyRef Name="DaıreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanicilar_Yetkilendirme">
+          <End Role="Yetkilendirme" Type="Self.Yetkilendirme" Multiplicity="0..1" />
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkilendirme">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kullanicilar">
+              <PropertyRef Name="YetkıID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personelızınlerı_Personeller">
+          <End Role="Personeller" Type="Self.Personeller" Multiplicity="0..1" />
+          <End Role="Personelızınlerı" Type="Self.Personelızınlerı" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personeller">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personelızınlerı">
+              <PropertyRef Name="PersonelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personeller_Birimler">
+          <End Role="Birimler" Type="Self.Birimler" Multiplicity="0..1" />
+          <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birimler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personeller">
+              <PropertyRef Name="BırımID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personeller_DaıreBas">
+          <End Role="DaıreBas" Type="Self.DaıreBas" Multiplicity="0..1" />
+          <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaıreBas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personeller">
+              <PropertyRef Name="DaıreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonelModelStoreContainer">
+          <EntitySet Name="Birimler" EntityType="Self.Birimler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DaıreBas" EntityType="Self.DaıreBas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Iletisim" EntityType="Self.Iletisim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurum" EntityType="Self.Kurum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personelızınlerı" EntityType="Self.Personelızınlerı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personeller" EntityType="Self.Personeller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetkilendirme" EntityType="Self.Yetkilendirme" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Birimler_DaıreBas" Association="Self.FK_Birimler_DaıreBas">
+            <End Role="DaıreBas" EntitySet="DaıreBas" />
+            <End Role="Birimler" EntitySet="Birimler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanicilar_Yetkilendirme" Association="Self.FK_Kullanicilar_Yetkilendirme">
+            <End Role="Yetkilendirme" EntitySet="Yetkilendirme" />
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personelızınlerı_Personeller" Association="Self.FK_Personelızınlerı_Personeller">
+            <End Role="Personeller" EntitySet="Personeller" />
+            <End Role="Personelızınlerı" EntitySet="Personelızınlerı" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personeller_Birimler" Association="Self.FK_Personeller_Birimler">
+            <End Role="Birimler" EntitySet="Birimler" />
+            <End Role="Personeller" EntitySet="Personeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personeller_DaıreBas" Association="Self.FK_Personeller_DaıreBas">
+            <End Role="DaıreBas" EntitySet="DaıreBas" />
+            <End Role="Personeller" EntitySet="Personeller" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PersonelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Birimler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Birim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DaıreID" Type="Int32" />
+          <NavigationProperty Name="DaıreBas" Relationship="Self.FK_Birimler_DaıreBas" FromRole="Birimler" ToRole="DaıreBas" />
+          <NavigationProperty Name="Personeller" Relationship="Self.FK_Personeller_Birimler" FromRole="Birimler" ToRole="Personeller" />
+        </EntityType>
+        <EntityType Name="DaıreBas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DaıreBas1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Acıklama" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Birimler" Relationship="Self.FK_Birimler_DaıreBas" FromRole="DaıreBas" ToRole="Birimler" />
+          <NavigationProperty Name="Personeller" Relationship="Self.FK_Personeller_DaıreBas" FromRole="DaıreBas" ToRole="Personeller" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duyuru" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Saat" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Iletisim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdiSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Baslik" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YetkıID" Type="Int32" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IsActıve" Type="Boolean" />
+          <Property Name="GirisTarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Yetkilendirme" Relationship="Self.FK_Kullanicilar_Yetkilendirme" FromRole="Kullanicilar" ToRole="Yetkilendirme" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Kurum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KurumAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Personelızınlerı">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonelID" Type="Int32" />
+          <Property Name="IzınTuru" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GıdısTarih" Type="DateTime" Precision="0" />
+          <Property Name="DonusTarih" Type="DateTime" Precision="0" />
+          <Property Name="AlınanIzınSayısı" Type="Int32" />
+          <Property Name="KalanIzınSayısı" Type="Int32" />
+          <NavigationProperty Name="Personeller" Relationship="Self.FK_Personelızınlerı_Personeller" FromRole="Personelızınlerı" ToRole="Personeller" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sicil" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Personeller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DaıreID" Type="Int32" />
+          <Property Name="BırımID" Type="Int32" />
+          <Property Name="Adi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sicil" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActıve" Type="Boolean" />
+          <Property Name="ızın" Type="Int32" />
+          <Property Name="GirisTarih" Type="DateTime" Precision="0" />
+          <Property Name="DonusTarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Birimler" Relationship="Self.FK_Personeller_Birimler" FromRole="Personeller" ToRole="Birimler" />
+          <NavigationProperty Name="DaıreBas" Relationship="Self.FK_Personeller_DaıreBas" FromRole="Personeller" ToRole="DaıreBas" />
+          <NavigationProperty Name="Personelızınlerı" Relationship="Self.FK_Personelızınlerı_Personeller" FromRole="Personeller" ToRole="Personelızınlerı" />
+        </EntityType>
+        <EntityType Name="Yetkilendirme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yetki" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Kullanicilar_Yetkilendirme" FromRole="Yetkilendirme" ToRole="Kullanicilar" />
+        </EntityType>
+        <Association Name="FK_Birimler_DaıreBas">
+          <End Role="DaıreBas" Type="Self.DaıreBas" Multiplicity="0..1" />
+          <End Role="Birimler" Type="Self.Birimler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaıreBas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Birimler">
+              <PropertyRef Name="DaıreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personeller_Birimler">
+          <End Role="Birimler" Type="Self.Birimler" Multiplicity="0..1" />
+          <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birimler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personeller">
+              <PropertyRef Name="BırımID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personeller_DaıreBas">
+          <End Role="DaıreBas" Type="Self.DaıreBas" Multiplicity="0..1" />
+          <End Role="Personeller" Type="Self.Personeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaıreBas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personeller">
+              <PropertyRef Name="DaıreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanicilar_Yetkilendirme">
+          <End Role="Yetkilendirme" Type="Self.Yetkilendirme" Multiplicity="0..1" />
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkilendirme">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kullanicilar">
+              <PropertyRef Name="YetkıID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personelızınlerı_Personeller">
+          <End Role="Personeller" Type="Self.Personeller" Multiplicity="0..1" />
+          <End Role="Personelızınlerı" Type="Self.Personelızınlerı" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personeller">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personelızınlerı">
+              <PropertyRef Name="PersonelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Birimler" EntityType="Self.Birimler" />
+          <EntitySet Name="DaıreBas" EntityType="Self.DaıreBas" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" />
+          <EntitySet Name="Iletisim" EntityType="Self.Iletisim" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+          <EntitySet Name="Kurum" EntityType="Self.Kurum" />
+          <EntitySet Name="Personelızınlerı" EntityType="Self.Personelızınlerı" />
+          <EntitySet Name="Personeller" EntityType="Self.Personeller" />
+          <EntitySet Name="Yetkilendirme" EntityType="Self.Yetkilendirme" />
+          <AssociationSet Name="FK_Birimler_DaıreBas" Association="Self.FK_Birimler_DaıreBas">
+            <End Role="DaıreBas" EntitySet="DaıreBas" />
+            <End Role="Birimler" EntitySet="Birimler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personeller_Birimler" Association="Self.FK_Personeller_Birimler">
+            <End Role="Birimler" EntitySet="Birimler" />
+            <End Role="Personeller" EntitySet="Personeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personeller_DaıreBas" Association="Self.FK_Personeller_DaıreBas">
+            <End Role="DaıreBas" EntitySet="DaıreBas" />
+            <End Role="Personeller" EntitySet="Personeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanicilar_Yetkilendirme" Association="Self.FK_Kullanicilar_Yetkilendirme">
+            <End Role="Yetkilendirme" EntitySet="Yetkilendirme" />
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personelızınlerı_Personeller" Association="Self.FK_Personelızınlerı_Personeller">
+            <End Role="Personeller" EntitySet="Personeller" />
+            <End Role="Personelızınlerı" EntitySet="Personelızınlerı" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PersonelModelStoreContainer" CdmEntityContainer="PersonelEntities">
+          <EntitySetMapping Name="Birimler">
+            <EntityTypeMapping TypeName="PersonelModel.Birimler">
+              <MappingFragment StoreEntitySet="Birimler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Birim" ColumnName="Birim" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="DaıreID" ColumnName="DaıreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DaıreBas">
+            <EntityTypeMapping TypeName="PersonelModel.DaıreBas">
+              <MappingFragment StoreEntitySet="DaıreBas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DaıreBas1" ColumnName="DaıreBas" />
+                <ScalarProperty Name="Acıklama" ColumnName="Acıklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duyurular">
+            <EntityTypeMapping TypeName="PersonelModel.Duyurular">
+              <MappingFragment StoreEntitySet="Duyurular">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Duyuru" ColumnName="Duyuru" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Saat" ColumnName="Saat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Iletisim">
+            <EntityTypeMapping TypeName="PersonelModel.Iletisim">
+              <MappingFragment StoreEntitySet="Iletisim">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdiSoyadi" ColumnName="AdiSoyadi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="PersonelModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="YetkıID" ColumnName="YetkıID" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsActıve" ColumnName="IsActıve" />
+                <ScalarProperty Name="GirisTarih" ColumnName="GirisTarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurum">
+            <EntityTypeMapping TypeName="PersonelModel.Kurum">
+              <MappingFragment StoreEntitySet="Kurum">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KurumAdi" ColumnName="KurumAdi" />
+                <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+                <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personelızınlerı">
+            <EntityTypeMapping TypeName="PersonelModel.Personelızınlerı">
+              <MappingFragment StoreEntitySet="Personelızınlerı">
+                <ScalarProperty Name="Sicil" ColumnName="Sicil" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+                <ScalarProperty Name="IzınTuru" ColumnName="IzınTuru" />
+                <ScalarProperty Name="GıdısTarih" ColumnName="GıdısTarih" />
+                <ScalarProperty Name="DonusTarih" ColumnName="DonusTarih" />
+                <ScalarProperty Name="AlınanIzınSayısı" ColumnName="AlınanIzınSayısı" />
+                <ScalarProperty Name="KalanIzınSayısı" ColumnName="KalanIzınSayısı" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personeller">
+            <EntityTypeMapping TypeName="PersonelModel.Personeller">
+              <MappingFragment StoreEntitySet="Personeller">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DaıreID" ColumnName="DaıreID" />
+                <ScalarProperty Name="BırımID" ColumnName="BırımID" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Sicil" ColumnName="Sicil" />
+                <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="IsActıve" ColumnName="IsActıve" />
+                <ScalarProperty Name="ızın" ColumnName="ızın" />
+                <ScalarProperty Name="GirisTarih" ColumnName="GirisTarih" />
+                <ScalarProperty Name="DonusTarih" ColumnName="DonusTarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetkilendirme">
+            <EntityTypeMapping TypeName="PersonelModel.Yetkilendirme">
+              <MappingFragment StoreEntitySet="Yetkilendirme">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

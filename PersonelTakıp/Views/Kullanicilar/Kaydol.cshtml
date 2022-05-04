@@ -1,0 +1,69 @@
+﻿@model PersonelTakıp.Models.Entity.Kullanicilar
+@{
+    Layout = null;
+}
+
+<div class="login-form login-form-left">
+
+    <div class="agile-row">
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1 style="color:blue ;margin-left:550px;">📝  Kayıt Ol</h1>
+        <br />
+        <br />
+        <table>
+            <div class="login-agileits-top" style="margin-left:550px;">
+                @using (Html.BeginForm("Kaydol", "Kullanicilar", FormMethod.Post))
+                {
+
+                    <div style="margin-top:20px;">
+                        @Html.LabelFor(x => x.KullaniciAdi)
+                        @Html.TextBoxFor(x => x.KullaniciAdi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.KullaniciAdi, null, new { @class = "text-danger" })
+                    </div>
+                    <div style="margin-top:20px; margin-left:46px;">
+                        @Html.LabelFor(x => x.Sifre)
+                        @Html.PasswordFor(x => x.Sifre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Sifre, null, new { @class = "text-danger" })
+                    </div>
+                    <div style="margin-top:20px; margin-left:38px;">
+                        @Html.LabelFor(x => x.Email)
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+                    </div>
+                    <div style="margin-top:20px;margin-left:49px;">
+                        @Html.LabelFor(x => x.Adi)
+                        @Html.TextBoxFor(x => x.Adi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Adi, null, new { @class = "text-danger" })
+                    </div>
+                    <div style="margin-top:20px;margin-left:31px;">
+                        @Html.LabelFor(x => x.Soyadi)
+                        @Html.TextBoxFor(x => x.Soyadi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Soyadi, null, new { @class = "text-danger" })
+                    </div>
+                    <div style="margin-top:20px;">
+                        <button class="btn btn-info" style="margin-left:140px; color:blue">Kayıt ol</button>
+                    </div>
+                }
+
+                <br />
+                <br />
+                <br />
+                Kayıt olduysanız : <a href="/Kullanicilar/Login/" class="btn btn-primary">Giriş Yap</a>
+
+            </div>
+        </table>
+    </div>
+</div>
+@section scriptdanger
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+}

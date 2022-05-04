@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "SilBilgiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@model PersonelTakıp.Models.Entity.Personeller
+
+
+<h2>SilBilgiGetir</h2>
+<div class="container">
+    @using (Html.BeginForm("Sil", "Personeller"))
+
+    {
+        <h1></h1>
+        <h4>Kayıt Silinsin mi?</h4>
+        <div>
+            @Html.HiddenFor(x => x.ID)
+
+            @Html.LabelFor(x => x.DaıreBas.DaıreBas1)
+
+            @Html.DisplayFor(x => x.DaıreBas.DaıreBas1, new { @class = "form-control" })
+
+
+
+
+
+        </div>
+
+        <div>
+
+            @Html.LabelFor(x => x.Birim)
+
+            @Html.DisplayFor(x => x.Birim, new { @class = "form-control" })
+
+
+
+
+
+        </div>
+        <div>
+
+            @Html.LabelFor(x => x.Aciklama)
+
+            @Html.DisplayFor(x => x.Aciklama, new { @class = "form-control" })
+
+
+
+
+
+        </div>
+        <div>
+            <button class="btn btn-danger">Personel sil</button>
+            <a href="/DaıreBas/Index/">AnaSayfa</a>
+
+
+        </div>
+
+    }
+
+
+
+</div>
+
+
+
+

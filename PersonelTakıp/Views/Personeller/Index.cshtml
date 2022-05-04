@@ -1,0 +1,131 @@
+﻿@model List<PersonelTakıp.Models.Entity.Personeller>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left:380px;color:blue">
+    ≡  Personel Listesi
+</h3>
+<br />
+
+    <table class="table  table-responsive">
+
+        <thead style="background-color:white">
+
+            <tr>
+                <th style="color:blue">ID</th>
+                @*<th>Başkanlık</th>*@
+                <th style="color:blue">Birimi</th>
+
+                <th style="color:blue"> Adı</th>
+                <th style="color:blue"> Soyadı</th>
+                <th style="color:blue">Sicil</th>
+                <th style="color:blue">Tc</th>
+                <th style="color:blue">Tel_1</th>
+                @*<th style="color:blue">Adres</th>*@
+                @*<th>Email</th>*@
+                <th style="color:blue">İzinVer</th>
+                @*<th>Dönüş Tarihi</th>*@
+                <th style="color:blue">İzin</th>
+                <th style="color:blue">Sil</th>
+                <th style="color:blue">Güncelle</th>
+                <th></th>
+
+
+            </tr>
+
+
+       
+
+        </thead>
+       
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <th>  @Html.DisplayFor(x => item.ID)</th>
+                @*<td>  @Html.DisplayFor(x => item.DaıreBas.DaıreBas1)</td>*@
+                <th>  @Html.DisplayFor(x => item.Birimler.Birim)</th>
+                <th>  @Html.DisplayFor(x => item.Adi)</th>
+                <th>  @Html.DisplayFor(x => item.Soyadi)</th>
+                <th>  @Html.DisplayFor(x => item.Sicil)</th>
+                <td><img src="@item.Aciklama" style="width:130px;height:100px" /></td>
+                <th>  @Html.DisplayFor(x => item.Tel_1)</th>
+                @*<th>  @Html.DisplayFor(x => item.Adres)</th>*@
+                @*<th>  @Html.DisplayFor(x => item.Email)</th>*@
+                <th>    @Html.ActionLink("✚İzinVer", "MiktarAzalt", new { id = item.ID }, new { @class = "badge badge-primary" })</th>
+                @*<th>  @Html.DisplayFor(x => item.DonusTarih)</th>*@
+
+
+
+                <th>
+                    @Html.DisplayFor(x => item.ızın)
+                    @Html.ActionLink("✚İzinEkle", "MiktarEkle", new { id = item.ID }, new { @class = "badge badge-success" })
+                </th>
+                @*<td><input type="submit" name="btn" value="Sil" class="btn btn-danger btnSil" data-id="@item.ID" /></td>*@
+                <td>@Html.ActionLink(" ⋓Sil ", "Sil", new { id = item.ID }, new { onclick = "return confirm('kayıt silinsin mi?')" })</td> @*<th>  @Html.ActionLink("Sil", "SilBilgiGetir", new { id = item.ID }, new { @class = "badge badge-danger" })</th>*@
+                <th>  @Html.ActionLink("➢Güncelle", "GuncelleBilgiGetir", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
+
+
+
+
+
+            </tr>
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+        </tbody>
+
+    </table>
+
+    <a href="/Personeller/Ekle/" style="margin-top:10px; margin-left:20px; width:150px" class="btn btn-info">✚Personel Ekle</a>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    @*<script type="text/javascript">
+
+            $(function () {
+                $("#personel").on("click", ".btnSil", function () {
+                    var btn = $(this);
+
+                    bootbox.confirm(btn.data("id") + "nolu ID Kaydı Silinsin mi?", function(result){
+
+                         if(result) {
+
+                            var id = btn.data("id");
+                            $.ajax({
+
+
+
+                                type: "GET",
+                                url: "/Personeller/Sil/",
+                                data: { id: id },
+                                success: function () {
+
+                                    btn.parent().parent().remove();
+
+                        }
+                    });
+
+                }
+                });
+
+
+            });
+
+
+          });
+
+
+
+        </script>*@

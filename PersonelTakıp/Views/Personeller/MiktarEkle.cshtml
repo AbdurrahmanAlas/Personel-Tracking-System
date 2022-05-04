@@ -1,0 +1,49 @@
+﻿@model PersonelTakıp.MyModel.MyPersoneller
+@{
+    ViewBag.Title = "MiktarEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left:70px;color:black " ><i>İzin Miktar Ekle</i></h3>
+
+<div class="container">
+
+    @using (Html.BeginForm("MiktarEkle", "Personeller", FormMethod.Post))
+    {
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.ID)
+            @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+
+
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Adi)
+            @Html.TextBoxFor(x => x.Adi, new { @class = "form-control" })
+
+
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Soyadi)
+            @Html.TextBoxFor(x => x.Soyadi, new { @class = "form-control" })
+
+
+        </div>
+        <div class="form-group">
+
+            <b>İzin Miktarı Ekle</b>
+            @Html.TextBoxFor(x => x.ızın, new { @class = "form-control" })
+
+
+        </div>
+        <div class="form-group">
+
+            <button class="btn btn-secondary"> İzin Miktarı ekle</button>
+
+
+        </div>
+    }
+
+</div>

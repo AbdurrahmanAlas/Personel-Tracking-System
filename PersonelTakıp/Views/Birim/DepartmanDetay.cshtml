@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "DepartmanDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<PersonelTakıp.Models.Entity.Personeller>
+
+
+<br />
+
+
+
+<h3 style="margin-left:350px;color:black ">
+    ≡   Birimde Çalışan Personeller
+</h3>
+
+<br />
+
+
+<ol class="breadcrumb mb-4">
+
+
+    <li style="color:black" class="breadcrumb-item active"> @ViewBag.d Biriminde Çalışan Personeller </li>
+
+</ol>
+
+<table class="table table-hover">
+
+    <tr>
+
+
+        <th>Personel</th>
+
+        <th>Görsel</th>
+        <th>İzinler</th>
+
+
+
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+
+            <td  style="color:black"><b>@x.Adi @x.Soyadi</b></td>
+
+            <td><img src="@x.Aciklama" style="width:170px;height:140px"</td>
+            <td><a href="/Departman/DepartmanPersonelSatıs/@x.ID" class="btn btn-success">İzinler</a></td>
+
+
+
+
+
+        </tr>
+
+
+    }
+
+
+</table>
+

@@ -1,0 +1,155 @@
+﻿@model PersonelTakıp.MyModel.MyPersoneller
+@{
+    ViewBag.Title = "GuncelleBilgiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3 style="margin-left:350px;color:blue ">
+    ➢   Personel Güncelle
+</h3>
+
+<div class="container">
+    @using (Html.BeginForm("Guncelle", "Personeller", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(x => x.ID)
+
+        <div class="form-group">
+
+            <b style="color:blue">Daire Başkanlık:</b>
+            @Html.DropDownListFor(x => x.DaıreID, Model.DaireBaskanlıkListesi, "Seciniz", new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.DaıreID, "", new { @class = "text-danger" })
+
+
+
+
+        </div>
+
+        <div class="form-group">
+
+
+            <b style="color:blue">Birim Adı:</b>
+            @Html.DropDownListFor(x => x.BırımID, Model.BirimListesi, "Once Daire Başkanlığı Sec", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.BırımID, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel Adı:</b>
+            @Html.TextBoxFor(x => x.Adi, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Adi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">Personel Soyadı:</b>
+            @Html.TextBoxFor(x => x.Soyadi, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Soyadi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">Personel Sicil:</b>
+            @Html.TextBoxFor(x => x.Sicil, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Sicil, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">Personel Tc:</b>
+            @Html.TextBoxFor(x => x.Tc, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Tc, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">Personel Telefon:</b>
+            @Html.TextBoxFor(x => x.Tel_1, new { @class = "form-control" })
+
+
+            @Html.ValidationMessageFor(x => x.Tel_1, "", new { @class = "text-danger" })
+        </div>
+       <div class="form-group">
+            <b style="color:blue">Fotograf: </b>
+            @*@Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })*@
+            <input type="file" name="Aciklama" />
+            <br />
+        </div>
+        <div class="form-group">
+            <b style="color:blue">Personel İzin </b>
+            @Html.TextBoxFor(x => x.ızın, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ızın, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.GirisTarih)
+            @Html.TextBoxFor(x => x.GirisTarih, new { @class = "form-control", type = "date", @Value = Model.GirisTarih?.ToString("yyyy-MM-dd") })
+            @Html.ValidationMessageFor(x => x.GirisTarih, "", new { @class = "text-danger" })
+
+
+        </div>
+
+        <div><button class="btn btn-success"> Personel Güncelle   </button></div>
+    }
+
+
+</div>
+@section scripts1
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#DaıreID").change(function () {
+                var ID = $("#DaıreID").val();
+                var birimlist = $("#BırımID");
+                birimlist.empty();
+                $.ajax({
+
+
+                    url: '/Personeller/GetBirim',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'id2': ID },
+                    success: function (data) {
+                        $.each(data, function (Index, option) {
+
+                            birimlist.append('<option value=' + option.Value + '>' + option.Text + '<option')
+
+
+
+                        });
+
+
+
+                    }
+
+                });
+
+            });
+
+
+        });
+
+
+    </script>
+
+
+}
+@section scriptdanger
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+}

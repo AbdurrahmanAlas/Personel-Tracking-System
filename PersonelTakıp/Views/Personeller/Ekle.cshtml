@@ -1,0 +1,175 @@
+﻿@model PersonelTakıp.MyModel.MyPersoneller
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left:350px;color:blue ">
+    ✚  Personel Ekle
+</h3>
+<br />
+
+<div class="container">
+
+    @using (Html.BeginForm("Ekle", "Personeller", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+    <form  method="post">
+        <div class="form-group">
+            <b style="color:blue">Fotograf: </b>
+            @*@Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })*@
+            <input type="file" name="Aciklama" />
+            @*<td><img src=""class="form-control Aciklama" style="width:130px;height:100px" /></td>*@
+            <br />
+        </div>
+        <br />
+        <div class="form-group">
+
+
+            <b style="color:blue">Daire Başkanlık </b>
+            @Html.DropDownListFor(x => x.DaıreID, Model.DaireBaskanlıkListesi, "Seciniz", new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.DaıreID, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Birim: </b>
+            @Html.DropDownListFor(x => x.BırımID, Model.BirimListesi, "Once Daire Başkanlığı Sec", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.BırımID, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel Adı:</b>
+            @Html.TextBoxFor(x => x.Adi, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Adi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel Soyadı: </b>
+            @Html.TextBoxFor(x => x.Soyadi, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Soyadi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel Sicili: </b>
+            @Html.TextBoxFor(x => x.Sicil, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Sicil, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel TC </b>
+            @Html.TextBoxFor(x => x.Tc, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Tc, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel Telefon Numarası:</b>
+            @Html.TextBoxFor(x => x.Tel_1, new { @class = "form-control" })
+
+
+            @Html.ValidationMessageFor(x => x.Tel_1, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Adres: </b>
+            @Html.TextBoxFor(x => x.Adres, new { @class = "form-control" })
+
+
+            @Html.ValidationMessageFor(x => x.Adres, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel İzin Miktarı </b>
+            @Html.TextBoxFor(x => x.ızın, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ızın, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+
+
+            <b style="color:blue">Personel Giriş Tarihi: </b>
+            @Html.TextBoxFor(x => x.GirisTarih, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(x => x.GirisTarih, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div><button class="btn btn-success"> ✚Personel Ekle   </button></div>
+
+    </form>
+        }
+
+
+
+
+
+
+        </div>
+        @section scripts1
+{
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                    $("#DaıreID").change(function () {
+                        var ID = $("#DaıreID").val();
+                        var birimlist = $("#BırımID");
+                        birimlist.empty();
+                        $.ajax({
+
+
+                            url: '/Personeller/GetBirim',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { 'id2': ID },
+                            success: function (data) {
+                                $.each(data, function (Index, option) {
+
+                                    birimlist.append('<option value=' + option.Value + '>' + option.Text + '<option')
+
+
+
+                                });
+
+
+
+                            }
+
+                        });
+
+                    });
+
+
+                });
+
+
+            </script>
+
+
+        }
+        @section scriptdanger
+{
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+        }

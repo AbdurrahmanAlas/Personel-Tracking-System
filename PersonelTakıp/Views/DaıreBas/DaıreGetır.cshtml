@@ -1,0 +1,38 @@
+﻿@model PersonelTakıp.MyModel.MyDaıreBas
+@{
+    ViewBag.Title = "DaıreGetır";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DaıreGetır</h2>
+
+<div class="container">
+
+
+
+    <form action="/DaıreBas/Guncelle/">
+       @Html.HiddenFor(x=>x.ID)
+        <div class="form-group">
+            <b>Daire Başkanlıgı</b>
+            @Html.TextBoxFor(x => x.DaıreBas1, new { @class = "form-control" })
+            
+
+
+
+        </div>
+
+        <div class="form-group">
+            <b>Acıklama</b>
+            @Html.TextBoxFor(x => x.Acıklama, new { @class = "form-control" })
+
+
+
+
+        </div>
+        <div><button class="btn btn-primary"> Daıre baskanlıgı Guncelle</button></div>
+    </form>
+
+
+
+
+</div>

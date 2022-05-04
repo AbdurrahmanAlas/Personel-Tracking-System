@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model PersonelTakıp.MyModel.MyPersonelızınlerı
+
+
+
+<h3 style="margin-left:350px;color:blue ">
+    ✚  İzin Ekle
+</h3>
+<br />
+
+<div class="container">
+
+    @using (Html.BeginForm("Ekle2", "Personelızın", FormMethod.Post))
+
+    {
+
+
+        @*<div class="form-group">
+
+                <b style="color:blue">Daire Başkanlık </b>
+                @Html.DropDownList("DaıreID", null, "----Seçiniz----", new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DaıreID, "", new { @class = "text-danger" })
+
+
+            </div>*@
+        @*<div class="form-group">
+
+                <b style="color:blue">Personel Birim </b>
+                @Html.TextBoxFor(x => x.Birim, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Birim, "", new { @class = "text-danger" })
+
+
+            </div>*@
+        @*<div class="form-group">
+
+                <b style="color:blue">İzin Ver </b>
+                @Html.TextBoxFor(x => x.PersonelID, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(x => x.PersonelID, "", new { @class = "text-danger" })
+
+            </div>*@
+        <div class="form-group">
+
+            <b style="color:blue"> Personel Adi </b>
+            @Html.TextBoxFor(x => x.Personeller.Adi, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Personeller.Adi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">Personel Soyadi </b>
+            @Html.TextBoxFor(x => x.Personeller.Soyadi, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Personeller.Soyadi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">Personel Sicil </b>
+            @Html.TextBoxFor(x => x.Personeller.Sicil, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.Personeller.Sicil, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+
+            <b style="color:blue">İzin Türü </b>
+            @Html.TextBoxFor(x => x.IzınTuru, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.IzınTuru, "", new { @class = "text-danger" })
+
+        </div><div class="form-group">
+
+            <b style="color:blue">Gidis Tarihi </b>
+            @Html.TextBoxFor(x => x.GıdısTarih, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.GıdısTarih, "", new { @class = "text-danger" })
+
+        </div> <div class="form-group">
+
+            <b style="color:blue">Dönüş Tarihi </b>
+            @Html.TextBoxFor(x => x.DonusTarih, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.DonusTarih, "", new { @class = "text-danger" })
+
+        </div> <div class="form-group">
+
+            <b style="color:blue">Alınan izin sayısı </b>
+            @Html.TextBoxFor(x => x.AlınanIzınSayısı, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.AlınanIzınSayısı, "", new { @class = "text-danger" })
+
+        </div>
+
+        @*<div class="form-group">
+
+            <b style="color:blue">Kalan izin sayısı </b>
+            @Html.TextBoxFor(x => x.KalanIzınSayısı, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.KalanIzınSayısı, "", new { @class = "text-danger" })
+
+        </div>*@
+        <div>
+
+            <button class="btn btn-success">✚İzin ver</button>
+        </div>
+    }
+
+</div>
+
+    @section scriptdanger
+{
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+    }
+
+

@@ -1,0 +1,41 @@
+﻿@using PersonelTakıp.Models.Entity
+@model List<PersonelTakıp.Models.Entity.DaıreBas>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+<h2 style=" margin-left:20px;">Daire Başkanlıkları Listesi</h2>
+
+<table class="table table-bordered" style="margin-top:20px;margin-left:20px;margin-right:20px">
+    <tr>
+
+        <th>ID</th>
+        <th>Daire Başkanlıkları</th>
+        <th>Acıklama</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+
+            <td>@item.ID</td>
+            <td>@item.DaıreBas1</td>
+            <td>@item.Acıklama</td>
+
+
+
+
+            <td> <a href="/DaıreBas/SilBilgiGetir/@item.ID"class="badge badge-danger">Sil</a></td>
+            <td> <a href="/DaıreBas/DaıreGetır/@item.ID" class="badge badge-success">Güncelle</a></td>
+        </tr>
+    }
+
+
+
+</table>
+
+<a href="/DaıreBas/Ekle/" style="margin-top:10px; margin-left:20px; width:100px" class="btn btn-info">Yeni Ekle</a>

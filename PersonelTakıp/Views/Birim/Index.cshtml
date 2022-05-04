@@ -1,0 +1,77 @@
+﻿
+@model List<PersonelTakıp.Models.Entity.Birimler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3 style="margin-left:350px;color:black ">
+    ≡   Birim Listesi
+</h3>
+<br />
+
+<table class="table">
+    <thead style="background-color:cadetblue;color:white;">
+
+        <tr>
+            <th>ID</th>
+            <th>DaireBaşkanlık</th>
+            <th>Birim</th>
+            <th>BirimdeÇalışanlar</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+            
+
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+
+        {
+
+        <tr>
+
+            <th>
+
+                @item.ID
+
+
+
+            </th>
+
+
+            <td>  @item.DaıreBas.DaıreBas1</td>
+
+
+
+
+            <td>
+
+                @item.Birim
+            </td>
+            <td>
+
+                <a href="/Birim/DepartmanDetay/@item.ID" class="badge badge-success"><i class="fas fa-fw fa-user"></i> PERSONELLER</a>
+            </td>
+            <td>@Html.ActionLink("⊗Sil", "Sil", new { id = item.ID }, new { onclick = "return confirm('kayıt silinsin mi?')" })</td>
+            @*<td><a href="/Marka/SilBilgiGetir/@item.ID" class="btn btn-danger">Sil</a></td>*@
+            <td><a href="/Birim/GuncelleBilgiGetir/@item.ID" class="btn btn-primary">➢Güncelle</a></td>
+
+
+
+        </tr>
+
+        }
+
+
+
+    </tbody>
+
+
+
+</table><a href="/Birim/Ekle/" style="margin-top:10px; margin-left:20px; width:130px" class="btn btn-info">✚Birim Ekle</a>

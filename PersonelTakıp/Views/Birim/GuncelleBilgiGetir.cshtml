@@ -1,0 +1,70 @@
+﻿
+@model PersonelTakıp.MyModel.MyBirimler
+@{
+    ViewBag.Title = "GuncelleBilgiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>GuncelleBilgiGetir</h2>
+<div class="container">
+
+    @using (Html.BeginForm("Guncelle", "Birim"))
+    {
+        @Html.ValidationSummary(false, null, new { @class = "tex-danger" })
+
+        @Html.HiddenFor(x => x.ID)
+
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.DaıreBas.DaıreBas1)
+            @Html.DropDownList("DaıreID", null, "----Seçiniz----", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.DaıreID, null, new { @class = "text-danger" })
+
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Birim)
+            @Html.TextBoxFor(x => x.Birim, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Birim, null, new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Aciklama)
+            @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Aciklama, null, new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success">Birim güncelle</button>
+        </div>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+@section scriptdanger
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+}
+

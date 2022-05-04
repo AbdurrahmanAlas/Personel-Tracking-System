@@ -1,0 +1,61 @@
+﻿@model PersonelTakıp.MyModel.MyBirimler
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3 style="margin-left:350px;color:blue ">
+    ✚  Birim Ekle
+</h3>
+<br />
+
+<div class="container">
+
+    @using (Html.BeginForm("Ekle", "Birim", FormMethod.Post))
+
+    {
+
+
+    <div class="form-group">
+
+        <b style="color:blue">Daire Başkanlık </b>
+        @Html.DropDownList("DaıreID", null, "----Seçiniz----", new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.DaıreID, "", new { @class = "text-danger" })
+
+
+    </div>
+    <div class="form-group">
+
+        <b style="color:blue">Personel Birim </b>
+        @Html.TextBoxFor(x => x.Birim, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Birim, "", new { @class = "text-danger" })
+
+
+    </div>
+    <div class="form-group">
+
+        <b style="color:blue">Acıklama </b>
+        @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+
+    </div>
+
+        <div>
+
+            <button class="btn btn-success">✚Birim Ekle</button>
+        </div>
+    }
+
+</div>
+
+@section scriptdanger
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+}
+

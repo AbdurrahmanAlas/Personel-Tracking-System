@@ -1,0 +1,89 @@
+﻿@model List<PersonelTakıp.Models.Entity.Personelızınlerı>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personel İzin Listesi</h2>
+
+<table class="table  table-bordered">
+
+    <thead style="background-color:white">
+
+        <tr>
+            <th style="color:blue"></th>
+            @*<th>Başkanlık</th>*@
+            <th style="color:blue">Adı</th>
+
+    
+            <th style="color:blue"> Soyadı</th>
+            <th style="color:blue">>Sicil</th>
+            @*<th style="color:blue">Tc</th>*@
+            @*<th style="color:blue">Tel_1</th>*@
+            <th style="color:blue">İzin Türü</th>
+            @*<th>Email</th>*@
+            <th style="color:blue">GidişTarihi</th>
+            <th style="color:blue">DönüşTarihi</th>
+            @*<th>Dönüş Tarihi</th>*@
+           
+            <th style="color:blue">Sil</th>
+            @*<th style="color:blue">Güncelle</th>*@
+            <th></th>
+
+
+        </tr>
+
+
+
+
+    </thead>
+
+    <tbody>
+       @foreach(var item in Model)
+        {
+        <tr>
+            @*<th>  @Html.DisplayFor(x => item.ID)</th>*@
+            <th>➤</th>
+            @*<td>  @Html.DisplayFor(x => item.DaıreBas.DaıreBas1)</td>*@
+            @*<th>  @Html.DisplayFor(x => item.PersonelID)</th>*@
+            <th>  @Html.DisplayFor(x => item.Adi)</th>
+            <th>  @Html.DisplayFor(x => item.Soyadi)</th>
+            <th>  @Html.DisplayFor(x => item.Sicil)</th>
+            @*<th>  @Html.DisplayFor(x => item.Personeller.Tc)</th>*@
+            @*<th>  @Html.DisplayFor(x => item.Personeller.Tel_1)</th>*@
+            <th>  @Html.DisplayFor(x => item.IzınTuru)</th>
+            <th>  @Html.DisplayFor(x => item.GıdısTarih)</th>
+            <th>  @Html.DisplayFor(x => item.DonusTarih)</th>
+       
+
+
+
+            
+            <td>@Html.ActionLink(" ⋓Sil ", "Sil", new { id = item.ID }, new { onclick = "return confirm('kayıt silinsin mi?')" })</td> @*<th>  @Html.ActionLink("Sil", "SilBilgiGetir", new { id = item.ID }, new { @class = "badge badge-danger" })</th>*@
+            @*<th>  @Html.ActionLink("➢Güncelle", "GuncelleBilgiGetir", new { id = item.ID }, new { @class = "btn btn-primary" })</th>*@
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+    </tbody>
+
+</table>
+
+<a href="/Personeller/Index/" style="margin-top:10px; margin-left:20px; width:200px" class="btn btn-info">➔ Personel Listesi</a>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
